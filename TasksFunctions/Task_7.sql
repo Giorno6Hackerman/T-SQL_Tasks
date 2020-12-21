@@ -1,9 +1,9 @@
-CREATE PROCEDURE rankStoresBySellings(@date_from AS DATE, @date_to AS DATE)
+ALTER PROCEDURE rankStoresBySellings(@date_from AS DATE, @date_to AS DATE)
 AS
 BEGIN
 	SELECT
 		store_name,
-		SUM(quantity) AS products_sold
+		SUM(soi.list_price * quantity * (1 - discount)) AS products_sold
 	FROM
 		sales.stores ss
 	INNER JOIN sales.orders so ON so.store_id = ss.store_id

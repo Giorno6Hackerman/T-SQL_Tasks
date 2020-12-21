@@ -1,9 +1,7 @@
-CREATE PROCEDURE listStockProductsFromStore(@store_name AS VARCHAR(255), @brand_name AS VARCHAR(255))
+ALTER PROCEDURE listStockProductsFromStore(@store_name AS VARCHAR(255), @brand_name AS VARCHAR(255))
 AS
 BEGIN
 	SELECT 
-		store_name,
-		brand_name,
 		product_name
 	FROM 
 		sales.stores s
@@ -12,5 +10,8 @@ BEGIN
 	INNER JOIN production.brands br ON br.brand_id = pr.brand_id
 	WHERE
 		store_name = @store_name AND
-		brand_name = @brand_name
+		brand_name = @brand_name AND
+		quantity = 0
+	GROUP BY
+		product_name
 END;
