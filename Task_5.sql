@@ -1,6 +1,6 @@
 SELECT  TOP 3
 	brand_name,
-	SUM(quantity) AS products_sold
+	SUM(oi.list_price * quantity * (1 - discount)) AS products_sold
 FROM 
 	sales.orders o
 INNER JOIN sales.order_items oi ON oi.order_id = o.order_id

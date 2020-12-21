@@ -1,6 +1,4 @@
 SELECT 
-	store_name,
-	brand_name,
 	product_name
 FROM 
 	sales.stores s
@@ -9,4 +7,7 @@ INNER JOIN production.products pr ON pr.product_id = ps.product_id
 INNER JOIN production.brands br ON br.brand_id = pr.brand_id
 WHERE
 	store_name = 'Baldwin Bikes' AND
-	brand_name = 'Electra'
+	brand_name = 'Electra' AND
+	quantity = 0
+GROUP BY
+	product_name
